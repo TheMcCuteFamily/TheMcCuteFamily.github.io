@@ -1,1 +1,157 @@
-The McCute Family website, the home of the Jenna sisters... Coming soon!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The McCute Family - Coming Soon</title>
+    <style>
+        body { background-color: #0b0206; color: #ffffff; font-family: 'Courier New', Courier, monospace; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; overflow-x: hidden; text-align: center; }
+        body::before { content: " "; display: block; position: fixed; top: 0; left: 0; bottom: 0; right: 0; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06)); z-index: 999; background-size: 100% 2px, 3px 100%; pointer-events: none; }
+        .container { max-width: 900px; padding: 20px; z-index: 2; }
+        h1 { font-size: 3rem; margin-bottom: 10px; color: #ff007f; text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f, 0 0 30px #ff007f; letter-spacing: 3px; text-transform: uppercase; }
+        h2 { font-size: 1.5rem; color: #ffb6c1; margin-top: 0; letter-spacing: 2px; text-shadow: 0 0 5px #000; }
+        p { font-size: 1.1rem; color: #cccccc; max-width: 600px; margin: 20px auto; }
+        #countdown { display: flex; justify-content: center; gap: 20px; margin: 40px 0; }
+        .time-box { background: rgba(255, 0, 127, 0.1); border: 2px solid #ff007f; box-shadow: 0 0 15px rgba(255, 0, 127, 0.3); padding: 15px; border-radius: 5px; min-width: 80px; }
+        .time-box span { display: block; font-size: 2rem; font-weight: bold; color: #ffffff; }
+        .time-box label { font-size: 0.8rem; color: #ffb6c1; text-transform: uppercase; }
+        .character-headline { color: #ff007f; margin-top: 50px; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; }
+        .character-preview { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
+        .char-card { width: 160px; background: #14050f; border: 1px solid #ffb6c1; padding: 10px; border-radius: 4px; transition: 0.3s; box-sizing: border-box; }
+        .char-card:hover { box-shadow: 0 0 10px rgba(255, 0, 127, 0.5); transform: scale(1.05); }
+        .char-img { width: 100%; height: auto; border-radius: 4px; border: 1px solid #ff007f; margin-bottom: 10px; }
+        .char-name { font-size: 0.9rem; color: #ffffff; margin-top: 5px; }
+        .terminal-box { margin-top: 50px; background: #000000; border: 2px dashed #ff007f; padding: 15px; max-width: 500px; width: 100%; margin-left: auto; margin-right: auto; text-align: left; box-sizing: border-box; box-shadow: inset 0 0 10px #ff007f; }
+        .terminal-header { color: #ff007f; font-size: 0.8rem; border-bottom: 1px solid #ff007f; padding-bottom: 5px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+        .terminal-text { color: #ffb6c1; font-size: 0.9rem; min-height: 40px; line-height: 1.4; }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainContainer">
+        <h1>The McCute Family</h1>
+        <h2>Official Site</h2>
+        <p>The official hub for the family is currently under construction. Something sinister is loading...</p>
+
+        <!-- Countdown Timer -->
+        <div id="countdown">
+            <div class="time-box">
+                <span id="days">00</span>
+                <label>Days</label>
+            </div>
+            <div class="time-box">
+                <span id="hours">00</span>
+                <label>Hours</label>
+            </div>
+            <div class="time-box">
+                <span id="minutes">00</span>
+                <label>Mins</label>
+            </div>
+            <div class="time-box">
+                <span id="seconds">00</span>
+                <label>Secs</label>
+            </div>
+        </div>
+
+        <div class="character-headline">▼ Featured McCute Family Files ▼</div>
+
+        <!-- 3 Character Slots -->
+        <div class="character-preview">
+            <div class="char-card">
+                <img src="https://placehold.co!" alt="Jenna McCute" class="char-img">
+                <div class="char-name">Jenna McCute</div>
+            </div>
+            <div class="char-card">
+                <img src="https://placehold.co!" alt="PinkJen McCute" class="char-img">
+                <div class="char-name">PinkJen McCute</div>
+            </div>
+            <div class="char-card">
+                <img src="https://placehold.co!" alt="YellowJen McCute" class="char-img">
+                <div class="char-name">YellowJen McCute</div>
+            </div>
+        </div>
+
+        <!-- Expanded Terminal Box -->
+        <div class="terminal-box">
+            <div class="terminal-header">SYSTEM_LOG_INTERCEPTED...</div>
+            <div class="terminal-text" id="terminalText">INITIALIZING SYSTEM CORRUPTION LOGS...</div>
+        </div>
+    </div>
+
+    <script>
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        let audioAllowed = false;
+
+        // Auto-resume sound context on any initial interaction to bypass browser restrictions seamlessly
+        window.addEventListener('click', () => { audioCtx.resume(); audioAllowed = true; });
+        window.addEventListener('keydown', () => { audioCtx.resume(); audioAllowed = true; });
+
+        function playCreepyTick() {
+            if (!audioAllowed) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.type = 'square';
+            osc.frequency.setValueAtTime(80, audioCtx.currentTime); 
+            osc.frequency.exponentialRampToValueAtTime(1, audioCtx.currentTime + 0.12);
+            gain.gain.setValueAtTime(1.0, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.12);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.12);
+        }
+
+        const launchDate = new Date(2026, 9, 31, 0, 0, 0).getTime();
+
+        setInterval(function() {
+            const now = new Date().getTime();
+            const distance = launchDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            if(document.getElementById("days")) {
+                document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+                document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+                document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+                document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+            }
+            playCreepyTick();
+        }, 1000);
+
+        // 20 Expanded Custom Movie Lore Terminal Messages
+        const loreLines = [
+            "SYS_ERR: Jenna McCute avatar log updated. Status: Dangerous.",
+            "FILE_FOUND: PinkJen McCute seen wandering near old Roblox servers...",
+            "WARNING: YellowJen McCute is active. Do not follow the yellow trail.",
+            "ALERT: Banned records found. GalaxyJen McCute file is corrupted.",
+            "ALERT: LavaJen McCute dataset offline. Hair asset: UNREACHABLE.",
+            "CRITICAL: User AGirljennifer has bypassed global network protocols.",
+            "DETECTION: JensNearYou signal pinged from inside the server room.",
+            "DATA_LEAK: RedJen McCute is tracking active player locations...",
+            "REDACTED: PurpleJen McCute purple headband recovery project failed.",
+            "LOG: BlackJen McCute registered on server at 03:00 AM.",
+            "MEM_WARPING: Someone is attempting to rewrite the McCute family history.",
+            "TRACE_ROUTE: Evil Jenna footprint detected on level 3 mainframes.",
+            "SYSTEM_REBOOT: Blocked by command authority root user 'JenBot340593'.",
+            "SIGHTING: Dark silhouette with a red headband spotted in the lobby.",
+            "BROKEN_LINK: ImJennaLopez moderation logs have vanished completely.",
+            "SIGNAL_LOST: Bombastic Hair energy spike measured near the volcanic region.",
+            "OVERRIDE: Jenna's Evil Revenge program sequence initiated.",
+            "BEWARE: Purple and black accessories detected in the restricted zone.",
+            "THREAT_LEVEL_HIGH: GalaxyJen traces found in the deleted asset library.",
+            "FINAL_NOTICE: The McCute Family is watching this browser tab."
+        ];
+        let lineIndex = 0;
+
+        setInterval(function() {
+            const target = document.getElementById("terminalText");
+            if(target) {
+                target.innerText = loreLines[lineIndex];
+                lineIndex = (lineIndex + 1) % loreLines.length;
+            }
+        }, 4000);
+    </script>
+</body>
+</html>
